@@ -16,10 +16,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { DarkModeToggle } from "./DarkModeToggle";
-import { NavItem } from "./NavItem";
-import { Logo } from "../Logo/Logo";
-import pepe from "../../assets/pepe-box.png";
+import { DarkModeToggle } from "../../ui/DarkModeToggle";
+import { Logo } from "../../ui/Logo";
+import { NavItem } from "../../ui/NavItem";
+import pepe from "../../../assets/pepe-box.png";
 
 const navs = [
   {
@@ -29,17 +29,6 @@ const navs = [
   {
     title: "Explore",
     to: "/explore",
-  },
-];
-
-const authNavs = [
-  {
-    title: "Login",
-    to: "/login",
-  },
-  {
-    title: "Register",
-    to: "/register",
   },
 ];
 
@@ -57,14 +46,12 @@ export const Navbar: FC = () => {
           onClick={isOpen ? onClose : onOpen}
         />
         <HStack spacing={8} alignItems={"center"}>
-          <Box className="image-container" height="100px">
+          <Box w={"100%"} h={"30px"} maxH={"30px"}>
             <Logo />
           </Box>
-          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
-            {navs.map((nav) => (
-              <NavItem title={nav.title} to={nav.to} />
-            ))}
-          </HStack>
+          {navs.map((nav) => (
+            <NavItem title={nav.title} to={nav.to} />
+          ))}
         </HStack>
         <Flex alignItems={"center"}>
           <Menu>

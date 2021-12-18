@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Box, Container, Link, Stack, useColorModeValue, Text } from "@chakra-ui/react";
 import { FaDiscord, FaFacebook, FaTwitch, FaTwitter } from "react-icons/fa";
-import { SocialIcon } from "./SocialIcon";
-import { Logo } from "../Logo/Logo";
+import { SocialIcon } from "../../ui/SocialIcon";
+import { Logo } from "../../ui/Logo";
 
 export const Footer: FC = () => {
   return (
@@ -13,7 +13,7 @@ export const Footer: FC = () => {
       mx="auto"
     >
       <Container as={Stack} py={2} justify={"center"} align={"center"}>
-        <Box className="image-container">
+        <Box w="100%" maxH="100px">
           <Logo />
         </Box>
         <Stack direction={"row"} spacing={6}>

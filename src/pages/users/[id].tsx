@@ -1,6 +1,6 @@
 import { GetStaticPropsResult } from "next";
 import { FC } from "react";
-import { Post } from "../store/posts/types";
+import { Post } from "../../store/posts/types";
 
 interface ProfileProps {
   data: Post[];
