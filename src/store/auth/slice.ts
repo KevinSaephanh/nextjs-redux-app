@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { login } from "./api";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { login, register, updateUser } from "./api";
 import { User } from "./types";
 
 type AuthState = {
@@ -18,28 +18,32 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<{ user: User; token: string }>) => {
+    setUser: (state, action: PayloadAction<User>) => {
       state.isAuth = true;
-      state.user = action.payload.user;
+      state.user = action.payload;
     },
-    logout: (state) => {
-      // Remove and token from local storage
+    logout: () => {
       localStorage.removeItem("token");
-
-      // Reset state
-      state.isAuth = false;
-      state.user = {} as User;
+      return initialState;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(login.fulfilled, (state, action: PayloadAction<any>) => {
-      state.isAuth = true;
-      state.user = action.payload.user;
-    });
-    builder.addCase(login.rejected, (state, action: PayloadAction<any>) => {
-      state.isAuth = false;
-      state.user = {} as User;
-    });
+    builder.addMatcher(
+      isAnyOf(login.fulfilled, updateUser.fulfilled),
+      (state, action: PayloadAction<any>) => {
+        state.isAuth = true;
+        state.user = action.payload;
+        state.error = null;
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(register.rejected, login.rejected),
+      (state, action: PayloadAction<any>) => {
+        state.isAuth = false;
+        state.user = {} as User;
+        state.error = action.payload;
+      }
+    );
   },
 });
 

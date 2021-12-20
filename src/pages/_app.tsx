@@ -4,7 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { store } from "../store";
 import { theme } from "../theme";
 import { Layout } from "../components/Layout/Layout";
-import "../styles/globals.scss";
+import "../styles/index.scss";
 
 function App({ Component, pageProps }: AppProps) {
   return (

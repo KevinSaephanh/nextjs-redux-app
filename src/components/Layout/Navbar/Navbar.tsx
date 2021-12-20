@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   IconButton,
   Menu,
   MenuButton,
@@ -19,6 +18,7 @@ import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { DarkModeToggle } from "../../ui/DarkModeToggle";
 import { Logo } from "../../ui/Logo";
 import { NavItem } from "../../ui/NavItem";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import pepe from "../../../assets/pepe-box.png";
 
 const navs = [
@@ -34,6 +34,8 @@ const navs = [
 
 export const Navbar: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isAuth, user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -45,32 +47,49 @@ export const Navbar: FC = () => {
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
-        <HStack spacing={8} alignItems={"center"}>
+        <Flex spacing={8} alignItems={"center"}>
           <Box w={"100%"} h={"30px"} maxH={"30px"}>
             <Logo />
           </Box>
           {navs.map((nav) => (
             <NavItem title={nav.title} to={nav.to} />
           ))}
-        </HStack>
+        </Flex>
         <Flex alignItems={"center"}>
           <Menu>
             <DarkModeToggle />
 
-            {/* Avatar with nav items */}
-            <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>
-              <Avatar size={"sm"} src={pepe}></Avatar>
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuDivider />
-              <MenuItem>Logout</MenuItem>
-            </MenuList>
+            {isAuth ? (
+              <>
+                <MenuButton
+                  as={Button}
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
+                  minW={0}
+                >
+                  <Avatar size={"sm"} src={pepe}></Avatar>
+                </MenuButton>
+                <MenuList>
+                  <MenuItem>{user.username}</MenuItem>
+                  <MenuDivider />
+                  <MenuItem>Profile</MenuItem>
+                  <MenuItem>Settings</MenuItem>
+                  <MenuDivider />
+                  <MenuItem>Logout</MenuItem>
+                </MenuList>
+              </>
+            ) : (
+              <>
+                <NavItem title="Register" to="/register" />
+                <NavItem title="Login" to="/login" />
+              </>
+            )}
           </Menu>
         </Flex>
       </Flex>
 
+      {/* Hamburger menu */}
       {isOpen ? (
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
