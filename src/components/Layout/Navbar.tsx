@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Flex,
+  HStack,
   IconButton,
   Menu,
   MenuButton,
@@ -15,20 +16,24 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { DarkModeToggle } from "../../ui/DarkModeToggle";
-import { Logo } from "../../ui/Logo";
-import { NavItem } from "../../ui/NavItem";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import pepe from "../../../assets/pepe-box.png";
+import { DarkModeToggle } from "../ui/DarkModeToggle";
+import { Logo } from "../ui/Logo";
+import { NavItem } from "../ui/NavItem";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import pepe from "../../assets/pepe-box.png";
 
 const navs = [
   {
-    title: "About",
-    to: "/about",
+    title: "Docs",
+    to: "/docs/getting-started",
   },
   {
-    title: "Explore",
-    to: "/explore",
+    title: "Examples",
+    to: "docs/examples",
+  },
+  {
+    title: "About",
+    to: "/about",
   },
 ];
 
@@ -36,6 +41,10 @@ export const Navbar: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    console.log("object");
+  };
 
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -47,17 +56,17 @@ export const Navbar: FC = () => {
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
-        <Flex spacing={8} alignItems={"center"}>
-          <Box w={"100%"} h={"30px"} maxH={"30px"}>
+        <HStack spacing={8} alignItems={"center"}>
+          <Box>
             <Logo />
           </Box>
-          {navs.map((nav) => (
-            <NavItem title={nav.title} to={nav.to} />
+          {navs.map((nav, key) => (
+            <NavItem title={nav.title} to={nav.to} key={key} />
           ))}
-        </Flex>
+        </HStack>
         <Flex alignItems={"center"}>
           <Menu>
-            <DarkModeToggle />
+            <DarkModeToggle isAuth={isAuth} darkMode={user.darkMode} />
 
             {isAuth ? (
               <>
@@ -76,7 +85,7 @@ export const Navbar: FC = () => {
                   <MenuItem>Profile</MenuItem>
                   <MenuItem>Settings</MenuItem>
                   <MenuDivider />
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </MenuList>
               </>
             ) : (

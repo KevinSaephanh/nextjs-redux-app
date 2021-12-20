@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../../models/User";
 import { login, register, updateUser } from "./api";
-import { User } from "./types";
 
 type AuthState = {
   isAuth: boolean;

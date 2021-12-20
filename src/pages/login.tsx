@@ -1,9 +1,19 @@
 import { Container, SimpleGrid, Stack, Heading, Input, Button } from "@chakra-ui/react";
 import { Formik, Form, ErrorMessage } from "formik";
-import { FC } from "react";
+import { useRouter } from "next/router";
+import { FC, useEffect } from "react";
+import { login } from "../store/auth/api";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
 
 const Login: FC<{}> = () => {
   const validationSchema = {};
+  const router = useRouter();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isAuth) router.push("/");
+  }, []);
 
   return (
     <Formik
@@ -11,6 +21,7 @@ const Login: FC<{}> = () => {
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting }) => {
         setSubmitting(true);
+        dispatch(login(data));
       }}
     >
       {({ errors, isSubmitting }) => (

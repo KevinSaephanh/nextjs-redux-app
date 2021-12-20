@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Box } from "@chakra-ui/react";
-import { Navbar } from "./Navbar/Navbar";
-import { Footer } from "./Footer/Footer";
+import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
 
 export const Layout: FC = ({ children }) => {
   return (

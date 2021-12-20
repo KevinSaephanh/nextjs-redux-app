@@ -1,9 +1,18 @@
 import { Stack, Heading, Input, Button, Container, SimpleGrid } from "@chakra-ui/react";
 import { ErrorMessage, Form, Formik } from "formik";
-import { FC } from "react";
+import { useRouter } from "next/router";
+import { FC, useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
 
 const Register: FC<{}> = () => {
   const validationSchema = {};
+  const router = useRouter();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isAuth) router.push("/");
+  }, []);
 
   return (
     <Formik

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { RegisterInput, LoginInput, User } from "./types";
+import { RegisterInput, LoginInput } from "./types";
+import { User } from "../../models/User";
 
 const BASE_URL = "";
 
@@ -13,7 +14,7 @@ export const login = createAsyncThunk("login", async (input: LoginInput) => {
   const res = await axios.post(`${BASE_URL}/login`);
   const { data } = res;
 
-  // Set token in local storage, decode and return user data
+  // Set cookie
   return {} as User;
 });
 

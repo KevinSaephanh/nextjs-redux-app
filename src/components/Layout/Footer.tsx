@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Box, Container, Link, Stack, useColorModeValue, Text } from "@chakra-ui/react";
 import { FaDiscord, FaFacebook, FaTwitch, FaTwitter } from "react-icons/fa";
-import { SocialIcon } from "../../ui/SocialIcon";
-import { Logo } from "../../ui/Logo";
+import { Logo } from "../ui/Logo";
+import { SocialIcon } from "../ui/SocialIcon";
 
 export const Footer: FC = () => {
   return (

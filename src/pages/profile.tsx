@@ -1,16 +1,15 @@
 import { GetStaticPropsResult } from "next";
 import { FC } from "react";
-import { Post } from "../store/posts/types";
 
 interface ProfileProps {
-  data: Post[];
+  data: any;
 }
 
 const Profile: FC<ProfileProps> = ({ data }) => {
   return (
     <>
       <ul>
-        {data.map((post: Post) => (
+        {data.map((post: any) => (
           <li>{post.title}</li>
         ))}
       </ul>
@@ -20,7 +19,7 @@ const Profile: FC<ProfileProps> = ({ data }) => {
 
 export const getStaticProps = async (): Promise<GetStaticPropsResult<ProfileProps>> => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
-  const data: Post[] = await res.json();
+  const data: any = await res.json();
 
   return {
     props: { data },
