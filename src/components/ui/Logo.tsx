@@ -6,7 +6,9 @@ import logo from "../../assets/logo.png";
 export const Logo: FC = () => {
   return (
     <Link href="/">
-      <Image src={logo} layout="responsive" alt="logo" />
+      <a href="/">
+        <Image src={logo} layout="responsive" alt="logo" />
+      </a>
     </Link>
   );
 };

@@ -2,13 +2,35 @@ import { Stack, Heading, Input, Button, Container, SimpleGrid } from "@chakra-ui
 import { ErrorMessage, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
+import * as Yup from "yup";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 
+const registerSchema = {
+  username: Yup.string()
+    .min(5, "Username must contain at least 5 characters")
+    .max(15, "Username length cannot exceed 15 characters")
+    .matches(/^[a-z0-9]+$/i, "Username can only contain alphanumeric characters")
+    .required("Username is required"),
+  email: Yup.string()
+    .email("Invalid email")
+    .min(5, "Email must contain at least 5 characters")
+    .max(30, "Email length cannot exceed 30 characters")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(5, "Password must contain at least 5 characters")
+    .max(50, "Password length cannot exceed 50 characters")
+    // .matches(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+    //   "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"
+    // )
+    .required("Password is required"),
+  confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], "Passwords must match"),
+};
+
 const Register: FC<{}> = () => {
-  const validationSchema = {};
   const router = useRouter();
-  const { isAuth } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuth) router.push("/");
@@ -17,7 +39,7 @@ const Register: FC<{}> = () => {
   return (
     <Formik
       initialValues={{ username: "", email: "", password: "", confirmPassword: "" }}
-      validationSchema={validationSchema}
+      validationSchema={registerSchema}
       onSubmit={(data, { setSubmitting }) => {
         setSubmitting(true);
       }}

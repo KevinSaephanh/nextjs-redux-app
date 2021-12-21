@@ -6,10 +6,9 @@ import { login } from "../store/auth/api";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 
 const Login: FC<{}> = () => {
-  const validationSchema = {};
   const router = useRouter();
-  const { isAuth } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuth) router.push("/");
@@ -18,7 +17,6 @@ const Login: FC<{}> = () => {
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
-      validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting }) => {
         setSubmitting(true);
         dispatch(login(data));

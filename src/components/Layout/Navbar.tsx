@@ -20,6 +20,8 @@ import { DarkModeToggle } from "../ui/DarkModeToggle";
 import { Logo } from "../ui/Logo";
 import { NavItem } from "../ui/NavItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { logout } from "../../store/auth/api";
+import { useRouter } from "next/router";
 import pepe from "../../assets/pepe-box.png";
 
 const navs = [
@@ -28,8 +30,8 @@ const navs = [
     to: "/docs/getting-started",
   },
   {
-    title: "Examples",
-    to: "docs/examples",
+    title: "Courses",
+    to: "/courses",
   },
   {
     title: "About",
@@ -38,12 +40,14 @@ const navs = [
 ];
 
 export const Navbar: FC = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isAuth, user } = useAppSelector((state) => state.auth);
+  const router = useRouter();
   const dispatch = useAppDispatch();
+  const { isAuth, user } = useAppSelector((state) => state.auth);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleLogout = () => {
-    console.log("object");
+  const handleLogout = async () => {
+    await dispatch(logout());
+    router.push("/");
   };
 
   return (
@@ -102,8 +106,8 @@ export const Navbar: FC = () => {
       {isOpen ? (
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
-            {navs.map((nav) => (
-              <NavItem title={nav.title} to={nav.to} />
+            {navs.map((nav, key) => (
+              <NavItem title={nav.title} to={nav.to} key={key} />
             ))}
           </Stack>
         </Box>

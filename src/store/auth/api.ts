@@ -27,3 +27,5 @@ export const deleteUser = createAsyncThunk("delete", async (id: number) => {
   const res = await axios.delete(`${BASE_URL}/${id}`);
   return res.data;
 });
+
+export const logout = createAsyncThunk("logout", async () => {});
