@@ -2,7 +2,7 @@ import { Container, SimpleGrid, Stack, Heading, Input, Button } from "@chakra-ui
 import { Formik, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
-import { login } from "../store/auth/api";
+import { login } from "../store/auth/asyncThunk";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 
 const Login: FC<{}> = () => {
@@ -17,9 +17,11 @@ const Login: FC<{}> = () => {
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
-      onSubmit={(data, { setSubmitting }) => {
+      onSubmit={async (data, { setSubmitting }) => {
         setSubmitting(true);
-        dispatch(login(data));
+        await dispatch(login(data));
+        setSubmitting(false);
+        router.push("/");
       }}
     >
       {({ errors, isSubmitting }) => (

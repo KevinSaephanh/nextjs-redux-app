@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../models/User";
-import { login, register, updateUser } from "./api";
+import { login, logout, register, updateUser } from "./api";
 
 type AuthState = {
   isAuth: boolean;
@@ -22,10 +22,6 @@ export const authSlice = createSlice({
       state.isAuth = true;
       state.user = action.payload;
     },
-    logout: () => {
-      localStorage.removeItem("token");
-      return initialState;
-    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -44,6 +40,9 @@ export const authSlice = createSlice({
         state.error = action.payload;
       }
     );
+    builder.addCase(logout.fulfilled, (state, action) => {
+      return initialState;
+    });
   },
 });
 

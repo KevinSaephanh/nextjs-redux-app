@@ -3,6 +3,7 @@ import { ErrorMessage, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 import * as Yup from "yup";
+import { register } from "../store/auth/asyncThunk";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 
 const registerSchema = {
@@ -40,8 +41,11 @@ const Register: FC<{}> = () => {
     <Formik
       initialValues={{ username: "", email: "", password: "", confirmPassword: "" }}
       validationSchema={registerSchema}
-      onSubmit={(data, { setSubmitting }) => {
+      onSubmit={async (data, { setSubmitting }) => {
         setSubmitting(true);
+        await dispatch(register(data));
+        setSubmitting(false);
+        router.push("/login");
       }}
     >
       {({ errors, isSubmitting }) => (
