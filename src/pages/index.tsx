@@ -1,6 +1,9 @@
 import { Container, Stack, Heading, Button, Text, Box } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const Index = () => {
+  const router = useRouter();
+
   return (
     <Container maxW={"3xl"}>
       <Stack as={Box} textAlign={"center"} spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
@@ -34,10 +37,16 @@ const Index = () => {
             _hover={{
               bg: "green.500",
             }}
+            onClick={() => router.push("/courses")}
           >
             Get Started
           </Button>
-          <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
+          <Button
+            variant={"link"}
+            colorScheme={"blue"}
+            size={"sm"}
+            onClick={() => router.push("/about")}
+          >
             Learn more
           </Button>
         </Stack>

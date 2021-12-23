@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../models/User";
-import { login, logout, register, updateUser } from "./api";
+import { login, logout, register, updateUser } from "./asyncThunk";
 
 type AuthState = {
   isAuth: boolean;
@@ -24,6 +24,9 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(logout.fulfilled, (state, action) => {
+      return initialState;
+    });
     builder.addMatcher(
       isAnyOf(login.fulfilled, updateUser.fulfilled),
       (state, action: PayloadAction<any>) => {
@@ -40,9 +43,6 @@ export const authSlice = createSlice({
         state.error = action.payload;
       }
     );
-    builder.addCase(logout.fulfilled, (state, action) => {
-      return initialState;
-    });
   },
 });
 

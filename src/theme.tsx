@@ -7,9 +7,15 @@ const breakpoints = createBreakpoints({
   lg: "64em",
   xl: "80em",
 });
-const config = {
+const colorConfig = {
   initialColorMode: "light",
   useSystemColorMode: false,
 };
+const textStyles = {
+  p: {
+    fontSize: ["12px", "16px"],
+    fontWeight: "semibold",
+  },
+};
 
-export const theme = extendTheme({ config, breakpoints });
+export const theme = extendTheme({ breakpoints, colorConfig, textStyles });

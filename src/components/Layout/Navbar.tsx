@@ -20,7 +20,7 @@ import { DarkModeToggle } from "../ui/DarkModeToggle";
 import { Logo } from "../ui/Logo";
 import { NavItem } from "../ui/NavItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { logout } from "../../store/auth/api";
+import { logout } from "../../store/auth/asyncThunk";
 import { useRouter } from "next/router";
 import pepe from "../../assets/pepe-box.png";
 
@@ -39,6 +39,17 @@ const navs = [
   },
 ];
 
+const authNavs = [
+  {
+    title: "Register",
+    to: "/register",
+  },
+  {
+    title: "Login",
+    to: "/login",
+  },
+];
+
 export const Navbar: FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -51,7 +62,7 @@ export const Navbar: FC = () => {
   };
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+    <Box bg={useColorModeValue("gray.500", "gray.900")} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <IconButton
           size={"md"}
@@ -64,9 +75,11 @@ export const Navbar: FC = () => {
           <Box>
             <Logo />
           </Box>
-          {navs.map((nav, key) => (
-            <NavItem title={nav.title} to={nav.to} key={key} />
-          ))}
+          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+            {navs.map((nav, key) => (
+              <NavItem title={nav.title} to={nav.to} key={key} />
+            ))}
+          </HStack>
         </HStack>
         <Flex alignItems={"center"}>
           <Menu>
