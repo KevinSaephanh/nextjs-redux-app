@@ -1,5 +1,7 @@
 import { FC } from "react";
-import { ProtectedRoute } from "../../../hoc/ProtectedRoute";
+import { withAuth } from "../../../hoc/withAuth";
+
+// tabs - account, notifications, privacy,
 
 interface SettingsProps {
   data: any;
@@ -9,4 +11,4 @@ const Settings: FC<SettingsProps> = ({ data }) => {
   return <>HELLO WORLD!</>;
 };
 
-export default ProtectedRoute(Settings);
+export default withAuth(Settings);

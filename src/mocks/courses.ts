@@ -1,6 +1,6 @@
 import { Course } from "../models/Course";
 
-export const courses: Course[] = [
+export const mockCourses: Course[] = [
   {
     id: 1,
     userId: 1,

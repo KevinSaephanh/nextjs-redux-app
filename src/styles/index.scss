@@ -7,3 +7,11 @@ a,
 button {
   font-weight: bold;
 }
+
+pre a {
+  color: teal;
+
+  &:hover {
+    color: turquoise;
+  }
+}

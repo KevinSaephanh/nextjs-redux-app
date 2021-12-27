@@ -1,17 +1,19 @@
 import { Container, SimpleGrid, Stack, Heading, Input, Button } from "@chakra-ui/react";
 import { Formik, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
-import { login } from "../store/auth/asyncThunk";
+import { FC, useEffect, useRef } from "react";
+import { login } from "../store/auth/api";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 
 const Login: FC<{}> = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const usernameInput = useRef<HTMLInputElement | null>(null);
   const { isAuth } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuth) router.push("/");
+    usernameInput.current?.focus();
   }, []);
 
   return (
@@ -43,7 +45,7 @@ const Login: FC<{}> = () => {
               >
                 Login
               </Heading>
-              <Input name="username" placeholder="Enter username" />
+              <Input name="username" placeholder="Enter username" ref={usernameInput} />
               <ErrorMessage name="username" component="div" />
               <Input name="password" type="password" placeholder="Enter password" />
               <ErrorMessage name="password" component="div" />

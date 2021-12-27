@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { IconButton, useColorMode } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
-import { lighten } from "@chakra-ui/theme-tools";
+import { Themes } from "../../models/User";
 
 interface DarkModeToggleProps {
   isAuth: boolean;
-  darkMode: boolean;
+  theme: Themes;
 }
 
-export const DarkModeToggle: FC<DarkModeToggleProps> = ({ isAuth, darkMode }) => {
+export const DarkModeToggle: FC<DarkModeToggleProps> = ({ isAuth, theme }) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (

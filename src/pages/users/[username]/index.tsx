@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { ProtectedRoute } from "../../../hoc/ProtectedRoute";
+import { withAuth } from "../../../hoc/withAuth";
 
 const Profile: FC = () => {
   return <>HELLO WORLD!</>;
 };
 
-export default ProtectedRoute(Profile);
+export default withAuth(Profile);

@@ -20,7 +20,7 @@ import { DarkModeToggle } from "../ui/DarkModeToggle";
 import { Logo } from "../ui/Logo";
 import { NavItem } from "../ui/NavItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { logout } from "../../store/auth/asyncThunk";
+import { logout } from "../../store/auth/api";
 import { useRouter } from "next/router";
 import pepe from "../../assets/pepe-box.png";
 
@@ -83,7 +83,7 @@ export const Navbar: FC = () => {
         </HStack>
         <Flex alignItems={"center"}>
           <Menu>
-            <DarkModeToggle isAuth={isAuth} darkMode={user.darkMode} />
+            <DarkModeToggle isAuth={isAuth} theme={user.theme} />
 
             {isAuth ? (
               <>

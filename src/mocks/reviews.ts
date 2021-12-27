@@ -1,6 +1,6 @@
-import { Review } from "../models/Reviews";
+import { Review } from "../models/Review";
 
-export const reviews: Review[] = [
+export const mockReviews: Review[] = [
   {
     id: 1,
     courseId: 1,
