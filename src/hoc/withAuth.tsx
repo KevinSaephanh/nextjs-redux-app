@@ -1,24 +1,27 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAppSelector } from "../store/hooks";
-import { GetServerSidePropsContext } from "next";
+import { mockToken } from "../mocks/tokens";
 
 export const withAuth = (Component: any) => {
-  const AuthComponent = (props): JSX.Element | null => {
-    const { isAuth } = useAppSelector((state) => state.auth);
+  const AuthComponent = (props: any): JSX.Element | null => {
     const router = useRouter();
+    const { user, token } = props;
 
     useEffect(() => {
-      if (!isAuth) router.push("/login");
+      if (!token || !user) router.push("/login");
     });
 
-    return isAuth ? <Component {...props} /> : null;
+    return token ? <Component {...props} /> : null;
   };
 
-  AuthComponent.getInitialProps = async (ctx: GetServerSidePropsContext) => {
-    console.log(ctx);
-    // ctx.req.headers.cookie = "";
-    return { context: ctx };
+  AuthComponent.getInitialProps = async (ctx: {}) => {
+    let token = null;
+    const user = JSON.parse(localStorage.getItem("user") as string);
+
+    // Set mock token if user is set in localstorage
+    if (user) token = mockToken;
+
+    return { user, token };
   };
 
   return AuthComponent;

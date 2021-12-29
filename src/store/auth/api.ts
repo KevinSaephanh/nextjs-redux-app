@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RegisterInput, LoginInput } from "./types";
 import { mockUser } from "../../mocks/users";
+import { mockToken } from "../../mocks/tokens";
 
 export const register = createAsyncThunk(
   "register",
@@ -15,19 +16,23 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk("login", async (input: LoginInput, { rejectWithValue }) => {
   try {
-    return mockUser;
+    localStorage.setItem("user", JSON.stringify(mockUser));
+    return { token: mockToken };
   } catch (err) {
     return rejectWithValue(err);
   }
 });
 
-export const getUser = createAsyncThunk("getUser", async (token: string, { rejectWithValue }) => {
-  try {
-    return mockUser;
-  } catch (err) {
-    return rejectWithValue(err);
+export const getCurrentUser = createAsyncThunk(
+  "getCurrentUser",
+  async (ctx: any, { rejectWithValue }) => {
+    try {
+      return mockUser;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
   }
-});
+);
 
 export const updateUser = createAsyncThunk("update", async (input: any, thunkAPI) => {
   try {
@@ -46,5 +51,16 @@ export const deleteUser = createAsyncThunk("delete", async (id: number, { reject
 });
 
 export const logout = createAsyncThunk("logout", async () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+});
+
+export const refreshToken = createAsyncThunk("refreshToken", async (_, { rejectWithValue }) => {
+  try {
+    return {
+      user: mockUser,
+      token: mockToken,
+    };
+  } catch (err) {
+    return rejectWithValue(err);
+  }
 });
