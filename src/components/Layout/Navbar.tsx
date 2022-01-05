@@ -53,7 +53,7 @@ const authNavs = [
 export const Navbar: FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { isAuth, user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleLogout = async () => {
@@ -71,7 +71,7 @@ export const Navbar: FC = () => {
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
-        <HStack spacing={8} alignItems={"center"}>
+        <HStack alignItems={"center"}>
           <Box>
             <Logo />
           </Box>
@@ -83,9 +83,9 @@ export const Navbar: FC = () => {
         </HStack>
         <Flex alignItems={"center"}>
           <Menu>
-            <DarkModeToggle isAuth={isAuth} theme={user.theme} />
+            <DarkModeToggle theme={user?.theme} />
 
-            {isAuth ? (
+            {user ? (
               <>
                 <MenuButton
                   as={Button}
@@ -106,10 +106,11 @@ export const Navbar: FC = () => {
                 </MenuList>
               </>
             ) : (
-              <>
-                <NavItem title="Register" to="/register" />
-                <NavItem title="Login" to="/login" />
-              </>
+              <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+                {authNavs.map((nav, key) => (
+                  <NavItem title={nav.title} to={nav.to} key={key} />
+                ))}
+              </HStack>
             )}
           </Menu>
         </Flex>

@@ -49,6 +49,7 @@ const Index = () => {
           >
             Learn more
           </Button>
+          <p>HELLLOOO</p>
         </Stack>
       </Stack>
     </Container>

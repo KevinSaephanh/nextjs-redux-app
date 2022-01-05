@@ -12,6 +12,12 @@ const config: ThemeConfig = {
   useSystemColorMode: false,
 };
 const textStyles = {
+  h1: {
+    fontSize: ["48px", "72px"],
+    fontWeight: "bold",
+    lineHeight: "110%",
+    letterSpacing: "-2%",
+  },
   p: {
     fontSize: ["12px", "16px"],
     fontWeight: "semibold",

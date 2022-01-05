@@ -3,6 +3,11 @@ html {
   padding: 0;
 }
 
+#__next {
+  position: relative;
+  min-height: 100vh;
+}
+
 a,
 button {
   font-weight: bold;
@@ -13,5 +18,24 @@ pre a {
 
   &:hover {
     color: turquoise;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.content-wrapper {
+  padding-bottom: 2.5rem;
+}
+
+.theme-toggle-btn {
+  margin-right: 15px;
+}
+
+@media only screen and (max-width: 800px) {
+  .theme-toggle-btn {
+    margin-right: 0;
   }
 }

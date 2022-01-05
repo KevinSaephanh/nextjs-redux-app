@@ -5,13 +5,13 @@ import { User } from "../../models/User";
 import { login, logout, register, updateUser } from "./api";
 
 type AuthState = {
-  user: User;
+  user: User | null;
   token?: Token | null;
   error: any;
 };
 
 export const initialState: AuthState = {
-  user: {} as User,
+  user: null,
   token: null,
   error: null,
 };
@@ -40,7 +40,7 @@ export const authSlice = createSlice({
     builder.addMatcher(
       isAnyOf(register.rejected, login.rejected),
       (state, action: PayloadAction<any>) => {
-        state.user = {} as User;
+        state.user = null;
         state.token = null;
         state.error = action.payload;
       }

@@ -8,6 +8,7 @@ export const Layout: FC = ({ children }) => {
     <>
       <Navbar />
       <Box
+        className="content-wrapper"
         as="main"
         justifyContent="center"
         alignItems="center"

@@ -5,7 +5,7 @@ import { SocialIcon } from "../ui/SocialIcon";
 
 export const Footer: FC = () => {
   return (
-    <Box as="footer" bg={useColorModeValue("gray.500", "gray.900")} mx="auto">
+    <Box as="footer" bg={useColorModeValue("gray.500", "gray.900")} mx="auto" w="100%">
       <Container
         as={Stack}
         maxW={"6xl"}
