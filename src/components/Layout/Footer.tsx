@@ -8,7 +8,7 @@ export const Footer: FC = () => {
     <Box as="footer" bg={useColorModeValue("gray.500", "gray.900")} mx="auto" w="100%">
       <Container
         as={Stack}
-        maxW={"6xl"}
+        maxW={"8xl"}
         py={4}
         direction={{ base: "column", md: "row" }}
         spacing={4}
@@ -16,10 +16,10 @@ export const Footer: FC = () => {
         align={{ base: "center", md: "center" }}
       >
         <Stack direction={"row"} spacing={6}>
-          <Link href={"#"}>Home</Link>
-          <Link href={"#"}>About</Link>
-          <Link href={"#"}>Blog</Link>
-          <Link href={"#"}>Contact</Link>
+          <Link href={"/"}>Home</Link>
+          <Link href={"/about"}>About</Link>
+          <Link href={"/Courses"}>Courses</Link>
+          <Link href={"/contact"}>Contact</Link>
         </Stack>
       </Container>
 
@@ -30,7 +30,7 @@ export const Footer: FC = () => {
       >
         <Container
           as={Stack}
-          maxW={"6xl"}
+          maxW={"8xl"}
           py={4}
           direction={{ base: "column", md: "row" }}
           spacing={4}

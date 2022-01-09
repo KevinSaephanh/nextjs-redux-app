@@ -32,10 +32,10 @@ const Register: FC<{}> = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const usernameInput = useRef<HTMLInputElement | null>(null);
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (isAuth) router.push("/");
+    if (user) router.push("/");
     usernameInput.current?.focus();
   }, []);
 
@@ -47,7 +47,7 @@ const Register: FC<{}> = () => {
         setSubmitting(true);
         await dispatch(register(data));
         setSubmitting(false);
-        router.push("/login");
+        router.push("/");
       }}
     >
       {({ errors, isSubmitting }) => (

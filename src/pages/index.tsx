@@ -1,4 +1,4 @@
-import { Container, Stack, Heading, Button, Text, Box } from "@chakra-ui/react";
+import { Container, Stack, Heading, Button, Text, Box, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 const Index = () => {
@@ -17,7 +17,7 @@ const Index = () => {
             stonks
           </Text>
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.900", "gray.400")}>
           Signup for Kevin's awesome possum not-a-scam get-rich-quick course today! In this course,
           you'll learn the tips and tricks of getting big gains to make your bank account swole! No
           cheat codes needed, all natty profits, and up arrows galore!
@@ -49,7 +49,6 @@ const Index = () => {
           >
             Learn more
           </Button>
-          <p>HELLLOOO</p>
         </Stack>
       </Stack>
     </Container>

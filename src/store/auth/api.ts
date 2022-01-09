@@ -1,13 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RegisterInput, LoginInput } from "./types";
-import { mockUser } from "../../mocks/users";
+import { mockUser, mockUsers } from "../../mocks/users";
 import { mockToken } from "../../mocks/tokens";
 
 export const register = createAsyncThunk(
   "register",
   async (input: RegisterInput, { rejectWithValue }) => {
     try {
-      return mockUser;
+      localStorage.setItem("user", JSON.stringify(mockUser));
+      return { token: mockToken };
     } catch (err) {
       return rejectWithValue(err);
     }
@@ -23,10 +24,13 @@ export const login = createAsyncThunk("login", async (input: LoginInput, { rejec
   }
 });
 
-export const getCurrentUser = createAsyncThunk(
-  "getCurrentUser",
-  async (ctx: any, { rejectWithValue }) => {
+export const getUserByUsername = createAsyncThunk(
+  "getUserByUsername",
+  async (username: string, { rejectWithValue }) => {
     try {
+      mockUsers.forEach((user) => {
+        if (user.username.toUpperCase() === username.toUpperCase()) return user;
+      });
       return mockUser;
     } catch (err) {
       return rejectWithValue(err);
@@ -34,18 +38,30 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk("update", async (input: any, thunkAPI) => {
+export const updateUser = createAsyncThunk("update", async (input: any, { rejectWithValue }) => {
   try {
     return input;
   } catch (err) {
-    return thunkAPI.rejectWithValue(err);
+    return rejectWithValue(err);
   }
 });
 
 export const deleteUser = createAsyncThunk("delete", async (id: number, { rejectWithValue }) => {
   try {
+    localStorage.removeItem("user");
     return mockUser;
   } catch (err) {
+    return rejectWithValue(err);
+  }
+});
+
+export const setCurrentUser = createAsyncThunk("setCurrentUser", async (_, { rejectWithValue }) => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user") as string);
+    const token = user ? mockToken : null;
+    return { user, token };
+  } catch (err) {
+    localStorage.removeItem("user");
     return rejectWithValue(err);
   }
 });

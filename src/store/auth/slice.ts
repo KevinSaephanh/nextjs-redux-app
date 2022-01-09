@@ -2,7 +2,7 @@ import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { mockUser } from "../../mocks/users";
 import { Token } from "../../models/Token";
 import { User } from "../../models/User";
-import { login, logout, register, updateUser } from "./api";
+import { login, logout, register, setCurrentUser, updateUser } from "./api";
 
 type AuthState = {
   user: User | null;
@@ -29,8 +29,12 @@ export const authSlice = createSlice({
     builder.addCase(logout.fulfilled, (state, action) => {
       return initialState;
     });
+    builder.addCase(setCurrentUser.fulfilled, (state, action) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+    });
     builder.addMatcher(
-      isAnyOf(login.fulfilled, updateUser.fulfilled),
+      isAnyOf(register.fulfilled, login.fulfilled, updateUser.fulfilled),
       (state, action: PayloadAction<Token>) => {
         state.user = mockUser;
         state.token = action.payload;
@@ -38,7 +42,7 @@ export const authSlice = createSlice({
       }
     );
     builder.addMatcher(
-      isAnyOf(register.rejected, login.rejected),
+      isAnyOf(register.rejected, login.rejected, setCurrentUser.rejected),
       (state, action: PayloadAction<any>) => {
         state.user = null;
         state.token = null;

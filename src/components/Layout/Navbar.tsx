@@ -6,6 +6,7 @@ import {
   Flex,
   HStack,
   IconButton,
+  Link,
   Menu,
   MenuButton,
   MenuDivider,
@@ -26,16 +27,16 @@ import pepe from "../../assets/pepe-box.png";
 
 const navs = [
   {
-    title: "Docs",
-    to: "/docs/getting-started",
+    title: "About",
+    to: "/about",
   },
   {
     title: "Courses",
     to: "/courses",
   },
   {
-    title: "About",
-    to: "/about",
+    title: "Contact",
+    to: "/contact",
   },
 ];
 
@@ -49,6 +50,8 @@ const authNavs = [
     to: "/login",
   },
 ];
+
+const combinedNavs = navs.concat(authNavs);
 
 export const Navbar: FC = () => {
   const router = useRouter();
@@ -75,11 +78,11 @@ export const Navbar: FC = () => {
           <Box>
             <Logo />
           </Box>
-          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+          <Flex spacing={4} display={{ base: "none", md: "flex" }}>
             {navs.map((nav, key) => (
               <NavItem title={nav.title} to={nav.to} key={key} />
             ))}
-          </HStack>
+          </Flex>
         </HStack>
         <Flex alignItems={"center"}>
           <Menu>
@@ -99,8 +102,12 @@ export const Navbar: FC = () => {
                 <MenuList>
                   <MenuItem>{user.username}</MenuItem>
                   <MenuDivider />
-                  <MenuItem>Profile</MenuItem>
-                  <MenuItem>Settings</MenuItem>
+                  <MenuItem>
+                    <Link href={`/users/${user.username}`}>Profile</Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link href={`/users/${user.username}/settings`}>Settings</Link>
+                  </MenuItem>
                   <MenuDivider />
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </MenuList>
@@ -120,9 +127,19 @@ export const Navbar: FC = () => {
       {isOpen ? (
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
-            {navs.map((nav, key) => (
-              <NavItem title={nav.title} to={nav.to} key={key} />
-            ))}
+            {user ? (
+              <>
+                {navs.map((nav, key) => (
+                  <NavItem title={nav.title} to={nav.to} key={key} />
+                ))}
+              </>
+            ) : (
+              <>
+                {combinedNavs.map((nav, key) => (
+                  <NavItem title={nav.title} to={nav.to} key={key} />
+                ))}
+              </>
+            )}
           </Stack>
         </Box>
       ) : null}

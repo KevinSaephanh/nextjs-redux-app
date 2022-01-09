@@ -11,9 +11,8 @@ export const DarkModeToggle: FC<DarkModeToggleProps> = ({ theme }) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   useEffect(() => {
-    console.log(colorMode);
     if (theme === Themes.Dark) toggleColorMode();
-  }, [theme, toggleColorMode]);
+  }, []);
 
   return (
     <IconButton

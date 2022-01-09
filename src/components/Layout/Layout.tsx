@@ -1,9 +1,20 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
+import { useAppDispatch } from "../../store/hooks";
+import { setCurrentUser } from "../../store/auth/api";
 
 export const Layout: FC = ({ children }) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const setUser = async () => {
+      await dispatch(setCurrentUser());
+    };
+    setUser();
+  }, []);
+
   return (
     <>
       <Navbar />

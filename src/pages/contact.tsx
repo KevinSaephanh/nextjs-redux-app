@@ -15,18 +15,15 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { FC, useState } from "react";
-import { useAppDispatch } from "../store/hooks";
 
 const Contact: FC = () => {
   const [successMessage, setSuccessMessage] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
 
   return (
     <Formik
       initialValues={{ name: "", email: "", message: "" }}
       onSubmit={async (data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
-        // await dispatch(sendEmail(data));
         setSubmitting(false);
         resetForm();
         setSuccessMessage(true);
