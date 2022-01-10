@@ -105,7 +105,7 @@ const Profile: FC = (props) => {
   return <Container maxW={"7xl"}>{user ? <ProfileCard user={user} /> : null}</Container>;
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const username = context.params.username as string;
   let user = mockUser;
   mockUsers.forEach((u) => {
