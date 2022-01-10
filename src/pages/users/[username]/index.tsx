@@ -8,11 +8,9 @@ import {
   Badge,
   Button,
   Text,
-  Link,
   Container,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa";
 import { SocialIcon } from "../../../components/ui/SocialIcon";
 import { mockUsers, mockUser } from "../../../mocks/users";
@@ -101,19 +99,19 @@ const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
   );
 };
 
-const Profile: FC = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const username = router.query.username.toString();
-    mockUsers.forEach((u) => {
-      if (u.username.toUpperCase() === username.toUpperCase()) setUser(u);
-    });
-    setUser(mockUser);
-  }, []);
+const Profile: FC = (props) => {
+  const user = props as User;
 
   return <Container maxW={"7xl"}>{user ? <ProfileCard user={user} /> : null}</Container>;
 };
+
+export async function getServerSideProps(context) {
+  const username = context.params.username as string;
+  let user = mockUser;
+  mockUsers.forEach((u) => {
+    if (u.username.toUpperCase().includes(username.toUpperCase())) user = u;
+  });
+  return { props: user };
+}
 
 export default Profile;

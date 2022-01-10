@@ -3,7 +3,6 @@ import { ErrorMessage, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { FC, useEffect, useRef } from "react";
 import * as Yup from "yup";
-import { withAuth } from "../hoc/withAuth";
 import { register } from "../store/auth/api";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 
@@ -91,4 +90,4 @@ const Register: FC<{}> = () => {
   );
 };
 
-export default withAuth(Register);
+export default Register;

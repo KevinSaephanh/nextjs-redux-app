@@ -32,14 +32,8 @@ const Contact: FC = () => {
     >
       {({ isSubmitting }) => (
         <Form>
-          <Container
-            as={SimpleGrid}
-            columns={{ base: 1, md: 2 }}
-            spacing={{ base: 10, lg: 32 }}
-            py={{ base: 10, sm: 20, lg: 32 }}
-            centerContent
-          >
-            <Stack p="6" spacing={{ base: 3, md: 5 }} boxShadow="xl" borderRadius="md">
+          <Container maxW="5xl" py={{ base: 10, sm: 20, lg: 32 }} centerContent>
+            <Stack w={"lg"} p="6" spacing={{ base: 3, md: 5 }} boxShadow="xl" borderRadius="md">
               <Heading
                 color="teal"
                 textAlign="center"
