@@ -21,6 +21,7 @@ export const DarkModeToggle: FC<DarkModeToggleProps> = ({ theme }) => {
       icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
       onClick={toggleColorMode}
       color={colorMode}
+      mr={"15px"}
     />
   );
 };
