@@ -35,8 +35,22 @@ footer {
   margin-right: 15px;
 }
 
+.video-wrapper {
+  width: 750px;
+  height: 500px;
+}
+
 @media only screen and (max-width: 800px) {
   .theme-toggle-btn {
     margin-right: 0;
+  }
+
+  .profile-card {
+    margin: 0 auto;
+  }
+
+  .video-wrapper {
+    width: 100vw;
+    height: 300px;
   }
 }

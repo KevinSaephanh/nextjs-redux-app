@@ -4,6 +4,12 @@ import { useRouter } from "next/router";
 import { FC, useEffect, useRef } from "react";
 import { login } from "../store/auth/api";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
+import * as Yup from "yup";
+
+const loginSchema = Yup.object().shape({
+  username: Yup.string().required("Username is required"),
+  password: Yup.string().required("Password is required"),
+});
 
 const Login: FC<{}> = () => {
   const router = useRouter();
@@ -19,6 +25,7 @@ const Login: FC<{}> = () => {
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
+      validationSchema={loginSchema}
       onSubmit={async (data, { setSubmitting }) => {
         setSubmitting(true);
         await dispatch(login(data));

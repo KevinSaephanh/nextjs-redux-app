@@ -105,9 +105,6 @@ export const Navbar: FC = () => {
                   <MenuItem>
                     <Link href={`/users/${user.username}`}>Profile</Link>
                   </MenuItem>
-                  <MenuItem>
-                    <Link href={`/users/${user.username}/settings`}>Settings</Link>
-                  </MenuItem>
                   <MenuDivider />
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </MenuList>

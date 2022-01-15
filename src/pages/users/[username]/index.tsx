@@ -1,5 +1,4 @@
 import {
-  Center,
   Box,
   useColorModeValue,
   Avatar,
@@ -14,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa";
-import { CourseCard } from "../../../components/CourseCard";
+import { CourseCard } from "../../../components/ui/CourseCard";
 import { SocialIcon } from "../../../components/ui/SocialIcon";
 import { mockCourses } from "../../../mocks/courses";
 import { mockUsers, mockUser } from "../../../mocks/users";
@@ -27,14 +26,14 @@ interface ProfileCardProps {
 const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
   return (
     <Box
-      maxW={"320px"}
+      maxW={"330px"}
       w={"full"}
       bg={useColorModeValue("white", "gray.900")}
       boxShadow={"2xl"}
       rounded={"lg"}
-      p={6}
+      p={8}
       textAlign={"center"}
-      mx={"auto"}
+      className="profile-card"
     >
       <Avatar size={"xl"} src={user.avatar} alt={"Avatar Alt"} mb={4} pos={"relative"} />
       <Heading fontSize={"2xl"} fontFamily={"body"}>

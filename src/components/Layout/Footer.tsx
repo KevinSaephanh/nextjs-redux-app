@@ -18,7 +18,7 @@ export const Footer: FC = () => {
         <Stack direction={"row"} spacing={6}>
           <Link href={"/"}>Home</Link>
           <Link href={"/about"}>About</Link>
-          <Link href={"/Courses"}>Courses</Link>
+          <Link href={"/courses"}>Courses</Link>
           <Link href={"/contact"}>Contact</Link>
         </Stack>
       </Container>

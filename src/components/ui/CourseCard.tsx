@@ -1,14 +1,21 @@
 import { Center, Stack, useColorModeValue, Flex, Heading, Text, Image } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { FC } from "react";
-import { Course } from "../models/Course";
+import { Course } from "../../models/Course";
 
 interface CourseCardProps {
   course: Course;
 }
 
 export const CourseCard: FC<CourseCardProps> = ({ course }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/courses/${course.title}`);
+  };
+
   return (
-    <Center py={6}>
+    <Center py={6} onClick={handleClick}>
       <Stack
         borderWidth="1px"
         borderRadius="lg"
