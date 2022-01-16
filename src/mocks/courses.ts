@@ -42,3 +42,41 @@ export const mockCourses: Course[] = [
     rating: 5,
   },
 ];
+
+export const mockVideos = [
+  {
+    title: "How to Stonks",
+    src: "https://www.youtube.com/embed/8E1M8f3PYQ8",
+    time: 25,
+  },
+  {
+    title: "Introduction to Stonks Terms",
+    src: "https://www.youtube.com/embed/if-2M3K1tqk",
+    time: 30,
+  },
+  {
+    title: "Using Colors to Read Market",
+    src: "https://www.youtube.com/embed/F6Ku4i6hGfI",
+    time: 15,
+  },
+  {
+    title: "Technical Analysis for Dummies",
+    src: "https://www.youtube.com/embed/fe1Cb_7wio4",
+    time: 8,
+  },
+  {
+    title: "Full Due Diligence",
+    src: "https://www.youtube.com/embed/CAB3BHzrzmE",
+    time: 12,
+  },
+  {
+    title: "Personal Trading Examples",
+    src: "https://www.youtube.com/embed/qzuq9F9ZLO8",
+    time: 13,
+  },
+  {
+    title: "Time to Get Gains!",
+    src: "https://www.youtube.com/embed/GBAHnaYkJZE",
+    time: 7,
+  },
+];

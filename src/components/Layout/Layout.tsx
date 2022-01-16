@@ -24,7 +24,6 @@ export const Layout: FC = ({ children }) => {
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
-        mt={8}
         mx="auto"
         w="100%"
       >
