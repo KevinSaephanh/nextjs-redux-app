@@ -18,9 +18,9 @@ const Index = () => {
           </Text>
         </Heading>
         <Text color={useColorModeValue("gray.900", "gray.400")}>
-          Signup for Kevin's awesome possum not-a-scam get-rich-quick course today! In this course,
-          you'll learn the tips and tricks of getting big gains to make your bank account swole! No
-          cheat codes needed, all natty profits, and up arrows galore!
+          Signup for Kevin's awesome possum not-a-scam get-rich-quick courses today! In these
+          courses, you'll learn the tips and tricks of getting big gains to make your bank account
+          swole! No cheat codes needed, all natty profits, and up arrows galore trust trust!
         </Text>
         <Stack
           direction={"column"}

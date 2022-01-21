@@ -33,7 +33,7 @@ const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
       rounded={"lg"}
       p={8}
       textAlign={"center"}
-      className="profile-card"
+      className="profile-card card"
     >
       <Avatar size={"xl"} src={user.avatar} alt={"Avatar Alt"} mb={4} pos={"relative"} />
       <Heading fontSize={"2xl"} fontFamily={"body"} pb={"10px"}>
@@ -103,6 +103,7 @@ const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
 
 const Profile: FC = (props) => {
   const user = props as User;
+  const courses = mockCourses.sort(() => Math.random() - Math.random()).slice(0, 3);
 
   return (
     <Container maxW={"7xl"}>
@@ -120,7 +121,7 @@ const Profile: FC = (props) => {
         <Flex flex={1} justify={"center"} align={"center"} position={"relative"} w={"full"}>
           <VStack spacing={4} align="stretch">
             <Text fontSize={{ base: "xl", sm: "2xl", md: "3xl" }}>Courses Enrolled</Text>
-            {mockCourses.map((course, key) => (
+            {courses.map((course, key) => (
               <CourseCard course={course} key={key} />
             ))}
           </VStack>

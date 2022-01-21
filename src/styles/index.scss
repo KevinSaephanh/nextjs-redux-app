@@ -38,6 +38,11 @@ footer {
 .video-wrapper {
   width: 750px;
   height: 500px;
+  margin-top: 15px;
+}
+
+.card:hover {
+  border: 2px solid turquoise;
 }
 
 @media only screen and (max-width: 800px) {

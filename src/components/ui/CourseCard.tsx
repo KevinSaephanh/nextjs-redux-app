@@ -20,16 +20,17 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
         borderWidth="1px"
         borderRadius="lg"
         w={{ sm: "100%", md: "550px", lg: "650px" }}
-        height={{ sm: "476px", md: "18rem" }}
+        height={{ sm: "500px", md: "17rem" }}
         direction={{ base: "column", md: "row" }}
         bg={useColorModeValue("white", "gray.900")}
         boxShadow={"2xl"}
-        padding={4}
+        cursor={"pointer"}
+        className="card"
       >
-        <Flex flex={1} bg="blue.200" maxW={"40%"}>
+        <Flex flex={1} bg="blue.200" maxW={"100%"}>
           <Image objectFit="cover" boxSize="100%" src={course.image} />
         </Flex>
-        <Stack flex={1} p={1} pt={2}>
+        <Stack flex={1} p={5}>
           <Heading fontSize={"2xl"} mb={"auto"} mt={"0"}>
             {course.title}
           </Heading>

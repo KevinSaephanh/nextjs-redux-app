@@ -7,7 +7,9 @@ import {
   Accordion,
   AccordionItem,
   AccordionPanel,
+  useColorModeValue,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { FC } from "react";
 import { FaPlay } from "react-icons/fa";
 import { mockCourses } from "../../mocks/courses";
@@ -27,10 +29,10 @@ const ContentList: FC<{ course: Course }> = ({ course }) => {
         const { videos, title } = section;
 
         return (
-          <AccordionItem key={key} pl={"10px"}>
-            <h3>
+          <AccordionItem key={key} p={"10px 0 10px 5px"}>
+            <Heading fontSize={"xl"} cursor={"pointer"}>
               Section {key + 1}: {title}
-            </h3>
+            </Heading>
             <AccordionPanel pb={4}>
               {videos.map((video, index) => (
                 <SectionContent video={video} key={index} />
@@ -58,12 +60,31 @@ const SectionContent: FC<SectionContentProps> = ({ video, key }) => {
 };
 
 const CourseDetails: FC = (props) => {
+  const router = useRouter();
   const course = props as Course;
 
   return (
     <>
+      <Heading
+        color={useColorModeValue("white", "white")}
+        backgroundColor={useColorModeValue("gray.700", "#181818")}
+        fontSize={{ base: "16px", md: "xl" }}
+        width={"100vw"}
+        height={"50px"}
+        lineHeight={"50px"}
+        pl={"15px"}
+        cursor={"pointer"}
+        _hover={{ color: "teal.500" }}
+        onClick={() => router.push(`/courses/${course.title}`)}
+      >
+        {course.title}
+      </Heading>
       <AspectRatio className="video-wrapper" ratio={1}>
-        <iframe title="naruto" src="https://www.youtube.com/embed/if-2M3K1tqk" allowFullScreen />
+        <iframe
+          title="First video"
+          src="https://www.youtube.com/embed/if-2M3K1tqk"
+          allowFullScreen
+        />
       </AspectRatio>
       <ContentList course={course} />
     </>
