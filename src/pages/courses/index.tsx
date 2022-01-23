@@ -2,6 +2,7 @@ import { Container, Box, Heading, Stack, VStack } from "@chakra-ui/react";
 import { FC } from "react";
 import { CourseCard } from "../../components/ui/CourseCard";
 import { mockCourses } from "../../mocks/courses";
+import { getCourseCreator } from "../../helpers/helpers";
 
 const Courses: FC = (props) => {
   console.log(props);
@@ -26,9 +27,10 @@ const Courses: FC = (props) => {
           Side Nav
         </Box>
         <VStack align="stretch">
-          {mockCourses.map((course, key) => (
-            <CourseCard course={course} key={key} />
-          ))}
+          {mockCourses.map((course, key) => {
+            const creator = getCourseCreator(course);
+            return <CourseCard course={course} creator={creator} key={key} />;
+          })}
         </VStack>
       </Stack>
     </Container>

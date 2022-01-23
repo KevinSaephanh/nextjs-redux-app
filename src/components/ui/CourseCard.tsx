@@ -1,13 +1,15 @@
 import { Center, Stack, useColorModeValue, Flex, Heading, Text, Image } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { FC } from "react";
+import { textDarkValue, textLightValue } from "../../constants";
 import { Course } from "../../models/Course";
 
 interface CourseCardProps {
   course: Course;
+  creator: string;
 }
 
-export const CourseCard: FC<CourseCardProps> = ({ course }) => {
+export const CourseCard: FC<CourseCardProps> = ({ course, creator }) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -34,8 +36,8 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
           <Heading fontSize={"2xl"} mb={"auto"} mt={"0"}>
             {course.title}
           </Heading>
-          <Text color={useColorModeValue("gray.700", "gray.400")}>{course.author}</Text>
-          <Text color={useColorModeValue("gray.700", "gray.400")}>{course.description}</Text>
+          <Text color={useColorModeValue(textLightValue, textDarkValue)}>{creator}</Text>
+          <Text color={useColorModeValue(textLightValue, textDarkValue)}>{course.description}</Text>
         </Stack>
       </Stack>
     </Center>

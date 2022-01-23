@@ -3,6 +3,7 @@ import { ErrorMessage, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { FC, useEffect, useRef } from "react";
 import * as Yup from "yup";
+import { headingsFontSizes } from "../constants";
 import { register } from "../store/auth/api";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 
@@ -62,7 +63,7 @@ const Register: FC<{}> = () => {
               <Heading
                 color="teal"
                 textAlign="center"
-                fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
+                fontSize={headingsFontSizes}
                 fontWeight="semibold"
                 lineHeight={1.1}
               >

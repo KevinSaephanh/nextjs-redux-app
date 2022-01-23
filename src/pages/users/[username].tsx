@@ -18,6 +18,14 @@ import { SocialIcon } from "../../components/ui/SocialIcon";
 import { mockCourses } from "../../mocks/courses";
 import { mockUsers, mockUser } from "../../mocks/users";
 import { User } from "../../models/User";
+import { getCourseCreator } from "../../helpers/helpers";
+import {
+  badgeDarkValue,
+  badgeLightValue,
+  headingsFontSizes,
+  textDarkValue,
+  textLightValue,
+} from "../../constants";
 
 interface ProfileCardProps {
   user: User;
@@ -39,18 +47,33 @@ const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
       <Heading fontSize={"2xl"} fontFamily={"body"} pb={"10px"}>
         {user.username}
       </Heading>
-      <Text textAlign={"center"} color={useColorModeValue("gray.700", "gray.400")} px={3}>
+      <Text textAlign={"center"} color={useColorModeValue(textLightValue, textDarkValue)} px={3}>
         I am very cool beans, trust trust. I like to do stonks and play videogames.
       </Text>
 
       <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-        <Badge px={2} py={1} bg={useColorModeValue("gray.50", "gray.800")} fontWeight={"400"}>
+        <Badge
+          px={2}
+          py={1}
+          bg={useColorModeValue(badgeLightValue, badgeDarkValue)}
+          fontWeight={"400"}
+        >
           #art
         </Badge>
-        <Badge px={2} py={1} bg={useColorModeValue("gray.50", "gray.800")} fontWeight={"400"}>
+        <Badge
+          px={2}
+          py={1}
+          bg={useColorModeValue(badgeLightValue, badgeDarkValue)}
+          fontWeight={"400"}
+        >
           #awesomepossum
         </Badge>
-        <Badge px={2} py={1} bg={useColorModeValue("gray.50", "gray.800")} fontWeight={"400"}>
+        <Badge
+          px={2}
+          py={1}
+          bg={useColorModeValue(badgeLightValue, badgeDarkValue)}
+          fontWeight={"400"}
+        >
           #bombdotcom
         </Badge>
       </Stack>
@@ -120,10 +143,11 @@ const Profile: FC = (props) => {
 
         <Flex flex={1} justify={"center"} align={"center"} position={"relative"} w={"full"}>
           <VStack spacing={4} align="stretch">
-            <Text fontSize={{ base: "xl", sm: "2xl", md: "3xl" }}>Courses Enrolled</Text>
-            {courses.map((course, key) => (
-              <CourseCard course={course} key={key} />
-            ))}
+            <Text fontSize={headingsFontSizes}>Courses Enrolled</Text>
+            {courses.map((course, key) => {
+              const creator = getCourseCreator(course);
+              return <CourseCard course={course} creator={creator} key={key} />;
+            })}
           </VStack>
         </Flex>
       </Stack>

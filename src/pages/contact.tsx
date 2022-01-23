@@ -1,6 +1,5 @@
 import {
   Container,
-  SimpleGrid,
   Stack,
   Heading,
   Input,
@@ -15,6 +14,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { FC, useState } from "react";
+import { headingsFontSizes } from "../constants";
 
 const Contact: FC = () => {
   const [successMessage, setSuccessMessage] = useState<boolean>(false);
@@ -37,7 +37,7 @@ const Contact: FC = () => {
               <Heading
                 color="teal"
                 textAlign="center"
-                fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
+                fontSize={headingsFontSizes}
                 fontWeight="semibold"
                 lineHeight={1.1}
               >

@@ -10,6 +10,7 @@ export const mockUser: User = {
 };
 
 export const mockUsers: User[] = [
+  mockUser,
   {
     id: 2,
     username: "Kevcoolio",
