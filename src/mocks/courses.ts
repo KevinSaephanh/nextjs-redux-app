@@ -1,6 +1,6 @@
-import { Course, CourseSection, Video } from "../models/Course";
+import { Course, CourseSection, Lecture } from "../models/Course";
 
-export const mockVideos: Video[] = [
+export const mockLectures: Lecture[] = [
   {
     title: "How to Stonks",
     src: "https://www.youtube.com/embed/8E1M8f3PYQ8",
@@ -41,23 +41,23 @@ export const mockVideos: Video[] = [
 export const mockCourseSections: CourseSection[] = [
   {
     title: "Introduction to Stonks",
-    videos: mockVideos,
+    lectures: mockLectures,
   },
   {
     title: "Basic Terms",
-    videos: mockVideos,
+    lectures: mockLectures,
   },
   {
     title: "Technical Analysis",
-    videos: mockVideos,
+    lectures: mockLectures,
   },
   {
     title: "Due Diligence",
-    videos: mockVideos,
+    lectures: mockLectures,
   },
   {
     title: "Putting it all Together",
-    videos: mockVideos,
+    lectures: mockLectures,
   },
 ];
 

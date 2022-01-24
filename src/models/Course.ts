@@ -11,10 +11,10 @@ export interface Course {
 
 export interface CourseSection {
   title: string;
-  videos: Video[];
+  lectures: Lecture[];
 }
 
-export interface Video {
+export interface Lecture {
   title: string;
   src: string;
   time: number;
