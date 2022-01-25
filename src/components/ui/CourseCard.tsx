@@ -1,7 +1,9 @@
+import { StarIcon } from "@chakra-ui/icons";
 import { Center, Stack, useColorModeValue, Flex, Heading, Text, Image } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { textDarkValue, textLightValue } from "../../constants";
+import { convertToTimeFormat } from "../../helpers/helpers";
 import { Course } from "../../models/Course";
 
 interface CourseCardProps {
@@ -32,12 +34,14 @@ export const CourseCard: FC<CourseCardProps> = ({ course, creator }) => {
         <Flex flex={1} bg="blue.200" maxW={"100%"}>
           <Image objectFit="cover" boxSize="100%" src={course.image} />
         </Flex>
-        <Stack flex={1} p={5}>
-          <Heading fontSize={"2xl"} mb={"auto"} mt={"0"}>
-            {course.title}
-          </Heading>
+        <Stack flex={1} p={5} mb={"auto"} mt={"0"}>
+          <Heading fontSize={"2xl"}>{course.title}</Heading>
           <Text color={useColorModeValue(textLightValue, textDarkValue)}>{creator}</Text>
           <Text color={useColorModeValue(textLightValue, textDarkValue)}>{course.description}</Text>
+          <StarIcon color={"gold"} fontSize={18} />
+          <Text color={useColorModeValue(textLightValue, textDarkValue)}>
+            {convertToTimeFormat(course.totalTime)} hours &emsp; {course.totalLectures} lectures
+          </Text>
         </Stack>
       </Stack>
     </Center>

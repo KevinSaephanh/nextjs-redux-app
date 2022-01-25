@@ -5,6 +5,8 @@ export interface Course {
   description: string;
   image: string;
   rating: number;
+  totalTime: number;
+  totalLectures: number;
   students: number[];
   sections: CourseSection[];
 }
