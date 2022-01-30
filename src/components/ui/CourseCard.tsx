@@ -27,7 +27,7 @@ export const CourseCard: FC<CourseCardProps> = ({ course, creator }) => {
   };
 
   return (
-    <Center py={6} onClick={handleClick}>
+    <Center py={2} onClick={handleClick}>
       <Stack
         borderWidth="1px"
         borderRadius="lg"
@@ -35,6 +35,7 @@ export const CourseCard: FC<CourseCardProps> = ({ course, creator }) => {
         height={{ sm: "500px", md: "17rem" }}
         direction={{ base: "column", md: "row" }}
         bg={useColorModeValue("white", "gray.900")}
+        ml={{ base: 0, md: 20 }}
         boxShadow={"2xl"}
         cursor={"pointer"}
         className="card"

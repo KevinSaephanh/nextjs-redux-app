@@ -1,7 +1,7 @@
 export enum FilterNames {
-  Title,
-  Rating,
-  Categories,
+  Title = "Title",
+  Rating = "Rating",
+  Categories = "Categories",
 }
 
 export interface FilterTerm {

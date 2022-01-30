@@ -7,7 +7,8 @@ export const filterCourses = (filters: FilterTerm[], courses: Course[]) => {
   filters.forEach((f) => {
     switch (f.name) {
       case FilterNames.Title:
-        filteredCourses = courses.filter((c) => c.title.startsWith(f.value[0]));
+        if (f.value[0].length > 0)
+          filteredCourses = courses.filter((c) => c.title.startsWith(f.value[0]));
         break;
       case FilterNames.Rating:
         filteredCourses = courses.filter((c) => c.rating >= +f.value[0]);

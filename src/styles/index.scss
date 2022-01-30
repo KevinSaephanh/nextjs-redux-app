@@ -45,6 +45,14 @@ footer {
   border: 2px solid turquoise;
 }
 
+.filter-sidebar .chakra-stack {
+  margin-top: 25px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .theme-toggle-btn {
     margin-right: 0;
@@ -57,5 +65,13 @@ footer {
   .video-wrapper {
     width: 100vw;
     height: 300px;
+  }
+
+  .filter-sidebar {
+    display: flex;
+
+    .chakra-stack {
+      margin-top: 0;
+    }
   }
 }
