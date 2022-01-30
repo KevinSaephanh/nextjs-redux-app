@@ -18,7 +18,7 @@ import { SocialIcon } from "../../components/ui/SocialIcon";
 import { mockCourses } from "../../mocks/courses";
 import { mockUsers, mockUser } from "../../mocks/users";
 import { User } from "../../models/User";
-import { getCourseCreator } from "../../helpers/helpers";
+import { getCourseCreator } from "../../utils/getCourseCreator";
 import {
   badgeDarkValue,
   badgeLightValue,

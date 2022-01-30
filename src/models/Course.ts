@@ -5,6 +5,7 @@ export interface Course {
   description: string;
   image: string;
   rating: number;
+  category?: Category[];
   totalTime: number;
   totalLectures: number;
   students: number[];
@@ -20,4 +21,10 @@ export interface Lecture {
   title: string;
   src: string;
   time: number;
+}
+
+export enum Category {
+  DayTrading = "Day Trading",
+  SwingTrading = "Swing Trading",
+  OptionsTrading = "Options Trading",
 }

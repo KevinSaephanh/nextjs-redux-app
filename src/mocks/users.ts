@@ -1,16 +1,14 @@
 import { Themes, User } from "../models/User";
 import pepe from "../assets/pepe-box.png";
 
-export const mockUser: User = {
-  id: 1,
-  username: "Kevco",
-  email: "Kevco@CoolBeans.com",
-  avatar: pepe,
-  theme: Themes.Dark,
-};
-
 export const mockUsers: User[] = [
-  mockUser,
+  {
+    id: 1,
+    username: "Kevco",
+    email: "Kevco@CoolBeans.com",
+    avatar: pepe,
+    theme: Themes.Dark,
+  },
   {
     id: 2,
     username: "Kevcoolio",
@@ -36,3 +34,5 @@ export const mockUsers: User[] = [
     theme: Themes.Dark,
   },
 ];
+
+export const mockUser = mockUsers[0];

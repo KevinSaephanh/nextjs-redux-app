@@ -1,11 +1,42 @@
 import { Container, Box, Heading, Stack, VStack } from "@chakra-ui/react";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { CourseCard } from "../../components/ui/CourseCard";
 import { mockCourses } from "../../mocks/courses";
-import { getCourseCreator } from "../../helpers/helpers";
+import { getCourseCreator } from "../../utils/getCourseCreator";
+import { Course } from "../../models/Course";
+import { updateFilters } from "../../utils/updateFilters";
+import { FilterNames, FilterTerm } from "../../models/FilterTerm";
+import { filterExists } from "../../utils/filterExists";
+import { filterCourses } from "../../utils/filterCourses";
 
-const Courses: FC = (props) => {
-  console.log(props);
+interface CoursesProps {
+  courseList: Course[];
+}
+
+const Courses: FC<CoursesProps> = ({ courseList }) => {
+  const [courses, setCourses] = useState<Course[]>(courseList);
+  const [filters, setFilters] = useState<FilterTerm[]>([]);
+
+  useEffect(() => {
+    if (filters.length > 0) updateCoursesWithFilters();
+  }, [filters]);
+
+  const handleFilterChange = (property: FilterNames, values: string[]) => {
+    // Add new filter if it doesn't exist
+    if (!filterExists(property, filters)) {
+      setFilters([...filters, { name: property, value: values }]);
+      return;
+    }
+
+    const updatedFilters = updateFilters(property, values, filters);
+    setFilters(updatedFilters);
+  };
+
+  const updateCoursesWithFilters = () => {
+    // Use filters on course list
+    const filteredCourses = filterCourses(filters, courses);
+    setCourses(filteredCourses);
+  };
 
   return (
     <Container maxW={"7xl"} p="12">
@@ -27,7 +58,7 @@ const Courses: FC = (props) => {
           Side Nav
         </Box>
         <VStack align="stretch">
-          {mockCourses.map((course, key) => {
+          {courses.map((course, key) => {
             const creator = getCourseCreator(course);
             return <CourseCard course={course} creator={creator} key={key} />;
           })}
@@ -37,8 +68,8 @@ const Courses: FC = (props) => {
   );
 };
 
-// export const getServerSideProps = async (ctx) => {
-//   return {};
-// };
+export async function getServerSideProps(ctx: any) {
+  return { props: { courseList: mockCourses } };
+}
 
 export default Courses;

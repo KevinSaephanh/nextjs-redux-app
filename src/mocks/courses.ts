@@ -1,4 +1,4 @@
-import { Course, CourseSection, Lecture } from "../models/Course";
+import { Category, Course, CourseSection, Lecture } from "../models/Course";
 
 export const mockLectures: Lecture[] = [
   {
@@ -83,6 +83,7 @@ export const mockCourses: Course[] = [
       "This course provides comprehensive material for you to get natty gains in the stonks market, no 🧢",
     image: "https://cdn.pixabay.com/photo/2016/12/13/22/15/chart-1905225_960_720.jpg",
     rating: 4.5,
+    category: [Category.DayTrading, Category.SwingTrading],
     totalTime: 150,
     totalLectures: 51,
     students: [1, 3, 4],
@@ -96,6 +97,7 @@ export const mockCourses: Course[] = [
       "Are you a dummy when it comes to day trading? Come through and learn the best techniques to see green in your portfolio.",
     image: "https://cdn.pixabay.com/photo/2016/04/20/08/21/entrepreneur-1340649_960_720.jpg",
     rating: 3.8,
+    category: [Category.DayTrading],
     totalTime: 168,
     totalLectures: 65,
     students: [1, 3, 5],
@@ -109,6 +111,7 @@ export const mockCourses: Course[] = [
       "Want to make BIG gains?!? Buy this course and I'll teach you how to potentially make incredible gains!",
     image: "https://cdn.pixabay.com/photo/2021/05/27/10/28/stock-market-6287711_960_720.jpg",
     rating: 5,
+    category: [Category.DayTrading, Category.SwingTrading, Category.OptionsTrading],
     totalTime: 330,
     totalLectures: 103,
     students: [1, 2, 3],

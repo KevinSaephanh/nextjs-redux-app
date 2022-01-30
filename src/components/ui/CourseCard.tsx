@@ -3,7 +3,6 @@ import { Center, Stack, useColorModeValue, Flex, Heading, Text, Image } from "@c
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { textDarkValue, textLightValue } from "../../constants";
-import { convertToTimeFormat } from "../../helpers/helpers";
 import { Course } from "../../models/Course";
 
 interface CourseCardProps {
@@ -16,6 +15,15 @@ export const CourseCard: FC<CourseCardProps> = ({ course, creator }) => {
 
   const handleClick = () => {
     router.push(`/courses/${course.title}`);
+  };
+
+  const convertToTimeFormat = (time: number) => {
+    const hrs = time / 60;
+    const min = hrs - Math.floor(hrs);
+    const roundedHrs = Math.floor(hrs);
+
+    if (min === 0.5) return roundedHrs + 0.5;
+    return roundedHrs;
   };
 
   return (
