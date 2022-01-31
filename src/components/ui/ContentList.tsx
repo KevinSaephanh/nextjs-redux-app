@@ -9,28 +9,14 @@ import {
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { FaPlay } from "react-icons/fa";
-import { Lecture, Course } from "../../models/Course";
+import { Course } from "../../models/Course";
 
-interface SectionContentProps {
-  lecture: Lecture;
-  key: number;
+interface ContentListProps {
+  course: Course;
+  handleLectureChange: Function;
 }
 
-const SectionContent: FC<SectionContentProps> = ({ lecture, key }) => {
-  return (
-    <Box key={key}>
-      <Heading fontSize={{ base: "xl", md: "2xl" }} pb={"5px"}>
-        {key + 1}. {lecture.title}
-      </Heading>
-      <Flex pl={"5px"}>
-        <FaPlay fontSize={"12px"} style={{ margin: "auto 0" }} />
-        <Text pl={"10px"}>{lecture.time} min</Text>
-      </Flex>
-    </Box>
-  );
-};
-
-export const ContentList: FC<{ course: Course }> = ({ course }) => {
+export const ContentList: FC<ContentListProps> = ({ course, handleLectureChange }) => {
   const { sections } = course;
 
   return (
@@ -45,7 +31,15 @@ export const ContentList: FC<{ course: Course }> = ({ course }) => {
             </Heading>
             <AccordionPanel pb={4}>
               {lectures.map((lecture, index) => (
-                <SectionContent lecture={lecture} key={index} />
+                <Box key={index} onClick={(e) => handleLectureChange(lecture.title)}>
+                  <Heading fontSize={{ base: "xl", md: "2xl" }} pb={"5px"}>
+                    {index + 1}. {lecture.title}
+                  </Heading>
+                  <Flex pl={"5px"}>
+                    <FaPlay fontSize={"12px"} style={{ margin: "auto 0" }} />
+                    <Text pl={"10px"}>{lecture.time} min</Text>
+                  </Flex>
+                </Box>
               ))}
             </AccordionPanel>
           </AccordionItem>
