@@ -17,9 +17,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { DarkModeToggle } from "../ui/DarkModeToggle";
-import { Logo } from "../ui/Logo";
-import { NavItem } from "../ui/NavItem";
+import { DarkModeToggle } from "../ui/Nav/DarkModeToggle";
+import { Logo } from "../ui/Nav/Logo";
+import { NavItem } from "../ui/Nav/NavItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { logout } from "../../store/auth/api";
 import { useRouter } from "next/router";

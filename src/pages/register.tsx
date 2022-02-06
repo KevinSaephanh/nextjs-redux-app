@@ -59,12 +59,12 @@ const Register: FC<{}> = () => {
             py={{ base: 10, sm: 20, lg: 32 }}
             centerContent
           >
-            <Stack p="6" spacing={{ base: 3, md: 5 }} boxShadow="xl" borderRadius="md">
+            <Stack p={"6"} spacing={{ base: 3, md: 5 }} boxShadow="xl" borderRadius="md">
               <Heading
-                color="teal"
-                textAlign="center"
+                color={"teal"}
+                textAlign={"center"}
                 fontSize={headingsFontSizes}
-                fontWeight="semibold"
+                fontWeight={"semibold"}
                 lineHeight={1.1}
               >
                 Register

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Box } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../assets/logo.png";
+import logo from "../../../assets/logo.png";
 
 export const Logo: FC = () => {
   return (

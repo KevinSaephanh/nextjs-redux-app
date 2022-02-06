@@ -13,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa";
-import { CourseCard } from "../../components/ui/CourseCard";
 import { SocialIcon } from "../../components/ui/SocialIcon";
 import { mockCourses } from "../../mocks/courses";
 import { mockUsers, mockUser } from "../../mocks/users";
@@ -26,6 +25,7 @@ import {
   textDarkValue,
   textLightValue,
 } from "../../constants";
+import { CourseCard } from "../../components/ui/Course/CourseCard";
 
 interface ProfileCardProps {
   user: User;
@@ -129,7 +129,7 @@ const Profile: FC = (props) => {
   const courses = mockCourses.sort(() => Math.random() - Math.random()).slice(0, 3);
 
   return (
-    <Container maxW={"7xl"}>
+    <>
       <Stack
         align={"center"}
         spacing={{ base: 8, md: 10 }}
@@ -141,7 +141,7 @@ const Profile: FC = (props) => {
           {user ? <ProfileCard user={user} /> : null}
         </Stack>
 
-        <Flex flex={1} justify={"center"} align={"center"} position={"relative"} w={"full"}>
+        <Flex flex={1} justify={"center"} align={"center"} position={"relative"}>
           <VStack spacing={4} align="stretch">
             <Text fontSize={headingsFontSizes}>Courses Enrolled</Text>
             {courses.map((course, key) => {
@@ -151,7 +151,7 @@ const Profile: FC = (props) => {
           </VStack>
         </Flex>
       </Stack>
-    </Container>
+    </>
   );
 };
 

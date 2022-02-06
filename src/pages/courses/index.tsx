@@ -1,12 +1,12 @@
 import { Container, Box, Heading, Stack, VStack } from "@chakra-ui/react";
 import { FC, useState } from "react";
-import { CourseCard } from "../../components/ui/CourseCard";
 import { mockCourses } from "../../mocks/courses";
 import { getCourseCreator } from "../../utils/getCourseCreator";
 import { Course } from "../../models/Course";
 import { FilterTerm } from "../../models/FilterTerm";
 import { filterCourses } from "../../utils/filterCourses";
-import { FilterSideBar } from "../../components/ui/FilterSideBar";
+import { CourseCard } from "../../components/ui/Course/CourseCard";
+import { FilterSideBar } from "../../components/ui/Course/FilterSideBar";
 
 interface CoursesProps {
   courseList: Course[];
@@ -22,8 +22,8 @@ const Courses: FC<CoursesProps> = ({ courseList }) => {
   };
 
   return (
-    <Container maxW={"7xl"} p={{ base: 6, md: 16 }}>
-      <Heading as="h1" textAlign={"center"} mb={10}>
+    <>
+      <Heading as={"h1"} textAlign={"center"} mt={25} mb={10}>
         Stonks Courses
       </Heading>
       <Stack
@@ -34,9 +34,9 @@ const Courses: FC<CoursesProps> = ({ courseList }) => {
       >
         <Box
           marginTop={{ base: "1", sm: "5" }}
-          display="flex"
+          display={"flex"}
           flexDirection={{ base: "column", sm: "row" }}
-          justifyContent="space-between"
+          justifyContent={"space-between"}
         >
           <FilterSideBar updateCoursesWithFilters={updateCoursesWithFilters} />
         </Box>
@@ -47,7 +47,7 @@ const Courses: FC<CoursesProps> = ({ courseList }) => {
           })}
         </VStack>
       </Stack>
-    </Container>
+    </>
   );
 };
 

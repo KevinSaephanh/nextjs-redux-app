@@ -1,10 +1,10 @@
 import { StarIcon } from "@chakra-ui/icons";
 import { Box, Checkbox, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
-import { Category } from "../../models/Course";
-import { FilterTerm, FilterNames } from "../../models/FilterTerm";
-import { filterExists } from "../../utils/filterExists";
-import { updateFilters } from "../../utils/updateFilters";
+import { Category } from "../../../models/Course";
+import { FilterTerm, FilterNames } from "../../../models/FilterTerm";
+import { filterExists } from "../../../utils/filterExists";
+import { updateFilters } from "../../../utils/updateFilters";
 
 interface FilterSideBarProps {
   updateCoursesWithFilters: Function;

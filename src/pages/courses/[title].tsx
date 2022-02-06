@@ -1,10 +1,9 @@
 import { AspectRatio, Box, Container, Heading, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
-import { ContentList } from "../../components/ui/ContentList";
+import { ContentList } from "../../components/ui/Course/ContentList";
 import { mockCourses } from "../../mocks/courses";
 import { Course, Lecture } from "../../models/Course";
-import { useAppSelector } from "../../store/hooks";
 
 const CourseDetails: FC = (props) => {
   const [lecture, setLecture] = useState<Lecture>();
@@ -30,7 +29,7 @@ const CourseDetails: FC = (props) => {
   };
 
   return (
-    <Container maxW={"100vw"} p={0}>
+    <>
       <Heading
         color={useColorModeValue("white", "white")}
         backgroundColor={useColorModeValue("gray.700", "#181818")}
@@ -51,7 +50,7 @@ const CourseDetails: FC = (props) => {
         </AspectRatio>
         <ContentList course={course} handleLectureChange={handleLectureChange} />
       </Box>
-    </Container>
+    </>
   );
 };
 

@@ -26,7 +26,6 @@ const Login: FC<{}> = () => {
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
-      validationSchema={loginSchema}
       onSubmit={async (data, { setSubmitting }) => {
         setSubmitting(true);
         await dispatch(login(data));
@@ -43,19 +42,19 @@ const Login: FC<{}> = () => {
             py={{ base: 10, sm: 20, lg: 32 }}
             centerContent
           >
-            <Stack p="6" spacing={{ base: 3, md: 5 }} boxShadow="xl" borderRadius="md">
+            <Stack p={"6"} spacing={{ base: 3, md: 5 }} boxShadow="xl" borderRadius="md">
               <Heading
-                color="teal"
-                textAlign="center"
+                color={"teal"}
+                textAlign={"center"}
                 fontSize={headingsFontSizes}
-                fontWeight="semibold"
+                fontWeight={"semibold"}
                 lineHeight={1.1}
               >
                 Login
               </Heading>
-              <Input name="username" placeholder="Enter username" ref={usernameInput} />
+              <Input name="username" placeholder="Enter username" ref={usernameInput} required />
               <ErrorMessage name="username" component="div" />
-              <Input name="password" type="password" placeholder="Enter password" />
+              <Input name="password" type="password" placeholder="Enter password" required />
               <ErrorMessage name="password" component="div" />
               <Button disabled={isSubmitting} type="submit">
                 Login

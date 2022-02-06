@@ -2,8 +2,8 @@ import { StarIcon } from "@chakra-ui/icons";
 import { Center, Stack, useColorModeValue, Flex, Heading, Text, Image } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { textDarkValue, textLightValue } from "../../constants";
-import { Course } from "../../models/Course";
+import { textLightValue, textDarkValue } from "../../../constants";
+import { Course } from "../../../models/Course";
 
 interface CourseCardProps {
   course: Course;

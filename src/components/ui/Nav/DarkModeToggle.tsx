@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { IconButton, useColorMode } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
-import { Themes } from "../../models/User";
+import { Themes } from "../../../models/User";
 
 interface DarkModeToggleProps {
   theme: Themes | undefined;

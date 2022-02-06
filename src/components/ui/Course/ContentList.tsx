@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { FaPlay } from "react-icons/fa";
-import { Course } from "../../models/Course";
+import { Course } from "../../../models/Course";
 
 interface ContentListProps {
   course: Course;
@@ -26,13 +26,13 @@ export const ContentList: FC<ContentListProps> = ({ course, handleLectureChange 
 
         return (
           <AccordionItem key={key} p={"10px 0 10px 5px"}>
-            <Heading fontSize={"xl"} cursor={"pointer"}>
+            <Heading fontSize={{ base: "md", md: "2xl" }} cursor={"pointer"}>
               Section {key + 1}: {title}
             </Heading>
             <AccordionPanel pb={4}>
               {lectures.map((lecture, index) => (
                 <Box key={index} onClick={(e) => handleLectureChange(lecture.title)}>
-                  <Heading fontSize={{ base: "xl", md: "2xl" }} pb={"5px"}>
+                  <Heading fontSize={{ base: "md", md: "2xl" }} pb={"5px"}>
                     {index + 1}. {lecture.title}
                   </Heading>
                   <Flex pl={"5px"}>

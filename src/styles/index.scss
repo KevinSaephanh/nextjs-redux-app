@@ -26,6 +26,10 @@ footer {
   bottom: 0;
 }
 
+.chakra-form__label {
+  color: teal;
+}
+
 .content-wrapper {
   padding-bottom: 2.5rem;
   min-height: 80vh;
@@ -36,8 +40,8 @@ footer {
 }
 
 .video-wrapper {
-  width: 800px;
-  height: 550px;
+  width: 100%;
+  height: 600px;
 }
 
 .card:hover {
@@ -62,7 +66,6 @@ footer {
   }
 
   .video-wrapper {
-    width: 100vw;
     height: 300px;
   }
 

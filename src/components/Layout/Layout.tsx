@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
 import { useAppDispatch } from "../../store/hooks";
@@ -16,20 +16,12 @@ export const Layout: FC = ({ children }) => {
   }, []);
 
   return (
-    <>
+    <Flex className="content-wrapper" flexDirection={"column"} mx={"auto"} w={"100%"}>
       <Navbar />
-      <Box
-        className="content-wrapper"
-        as="main"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-        mx="auto"
-        w="100%"
-      >
+      <Container as="main" maxW={"7xl"} mb={25} h={"100%"} centerContent>
         {children}
-      </Box>
+      </Container>
       <Footer />
-    </>
+    </Flex>
   );
 };

@@ -1,30 +1,43 @@
-import { Container, Stack, Heading, Button, Text, Box, useColorModeValue } from "@chakra-ui/react";
+import { Stack, Heading, Button, Text, Box, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 const Index = () => {
   const router = useRouter();
 
   return (
-    <Container maxW={"3xl"}>
-      <Stack as={Box} textAlign={"center"} spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
-        <Heading
-          fontWeight={600}
-          fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-          lineHeight={"110%"}
-        >
+    <>
+      <Stack
+        as={Box}
+        maxW={"4xl"}
+        m={"0 auto"}
+        textAlign={"center"}
+        spacing={{ base: 8, md: 14 }}
+        py={{ base: 20, md: 36 }}
+      >
+        <Heading fontSize={{ base: "2xl", sm: "4xl", md: "5xl" }} lineHeight={"110%"}>
           Make money from <br />
-          <Text as={"span"} color={"green.400"}>
+          <Text
+            as={"span"}
+            color={"green.400"}
+            fontSize={{ base: "4xl", md: "6xl" }}
+            lineHeight={"120%"}
+          >
             stonks
           </Text>
         </Heading>
-        <Text color={useColorModeValue("gray.900", "gray.400")}>
+        <Text
+          fontSize={{ base: "lg", md: "xl" }}
+          fontWeight={"bold"}
+          textAlign={"left"}
+          color={useColorModeValue("gray.900", "gray.400")}
+        >
           Signup for Kevin's awesome possum not-a-scam get-rich-quick courses today! In these
           courses, you'll learn the tips and tricks of getting big gains to make your bank account
           swole! No cheat codes needed, all natty profits, and up arrows galore trust trust!
         </Text>
         <Stack
           direction={"column"}
-          spacing={3}
+          spacing={5}
           align={"center"}
           alignSelf={"center"}
           position={"relative"}
@@ -44,14 +57,14 @@ const Index = () => {
           <Button
             variant={"link"}
             colorScheme={"blue"}
-            size={"sm"}
+            size={"md"}
             onClick={() => router.push("/about")}
           >
             Learn more
           </Button>
         </Stack>
       </Stack>
-    </Container>
+    </>
   );
 };
 

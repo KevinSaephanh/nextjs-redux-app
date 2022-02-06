@@ -1,14 +1,16 @@
-import { Container, Heading, Text, Stack } from "@chakra-ui/react";
+import { Heading, Text, Stack } from "@chakra-ui/react";
 import { FC } from "react";
 
 const About: FC = () => {
   return (
-    <Container>
+    <>
       <Stack
+        maxW={"5xl"}
+        m="0 auto"
         textAlign={"center"}
         align={"center"}
         spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
+        py={{ base: 15, md: 28 }}
       >
         <Heading lineHeight={1.1} fontWeight={600} fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}>
           <Text
@@ -52,7 +54,7 @@ const About: FC = () => {
           </Text>
         </Stack>
       </Stack>
-    </Container>
+    </>
   );
 };
 
